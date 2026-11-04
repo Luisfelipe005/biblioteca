@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/Biblioteca")
@@ -30,6 +29,16 @@ public class LivroController {
     @GetMapping("/titulo")
     public List<Livro> buscaPorTitulo(@Valid @RequestParam String titulo){
         return livroService.buscaPorTitulo(titulo);
+    }
+
+    @GetMapping("/autor")
+    public List<Livro> buscarPorAutor(@Valid @RequestParam String autor){
+        return livroService.buscarPorAutor(autor);
+    }
+
+    @GetMapping("/categoria")
+    public List<Livro> buscarPorCategoria(@Valid @RequestParam String categoria){
+        return livroService.buscarPorCategoria(categoria);
     }
 
     @PostMapping

@@ -12,18 +12,18 @@ public class Livro {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
-   @NotBlank
+   @NotBlank(message = "Titulo não pode ser vazio!")
    private String titulo;
-    @NotBlank
+    @NotBlank(message = "Categoria não pode ser vazio!")
    private String categoria;
-    @NotBlank
+    @NotBlank(message = "Autor não pode ser vazio")
    private String autor;
-    @NotNull
-    private boolean disponivel;
-    @NotNull
+    @NotNull(message = "Disponivel precisa ser true ou false!")
+    private Boolean disponivel;
+    @NotNull(message = "Ano de publicação não pode ser vazio!")
    private Integer anoPublicacao;
 
-    public Livro(Long id, String titulo, String categoria, String autor, boolean disponivel, Integer anoPublicacao) {
+    public Livro(Long id, String titulo, String categoria, String autor, Boolean disponivel, Integer anoPublicacao) {
         this.id = id;
         this.titulo = titulo;
         this.categoria = categoria;
@@ -79,7 +79,7 @@ public class Livro {
         return disponivel;
     }
 
-    public void setDisponivel(boolean disponivel) {
+    public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }
 }

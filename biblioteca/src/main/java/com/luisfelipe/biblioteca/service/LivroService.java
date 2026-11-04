@@ -30,10 +30,24 @@ public class LivroService {
     }
 
     public List<Livro> buscaPorTitulo(String titulo){
-        if(livroRepository.findAllBytituloIgnoreCaseContaining(titulo).isEmpty()){
+        if(livroRepository.findAllByTituloIgnoreCaseContaining(titulo).isEmpty()){
             throw new LivroNaoEncontradoException("Seu livro com o titulo: "+ titulo +" não foi encontrado");
         }
-        return livroRepository.findAllBytituloIgnoreCaseContaining(titulo);
+        return livroRepository.findAllByTituloIgnoreCaseContaining(titulo);
+    }
+
+    public List<Livro> buscarPorAutor(String autor){
+        if (livroRepository.findAllByAutorIgnoreCaseContaining(autor).isEmpty()) {
+            throw new LivroNaoEncontradoException("Seu livro com o autor: " + autor + " não foi encontrado");
+        }
+        return livroRepository.findAllByAutorIgnoreCaseContaining(autor);
+    }
+
+    public List<Livro> buscarPorCategoria(String categoria){
+        if(livroRepository.findAllByCategoriaIgnoreCaseContaining(categoria).isEmpty()){
+            throw new LivroNaoEncontradoException("Seu livro com a categoria: "+ categoria +" não foi encontrado");
+        }
+        return livroRepository.findAllByCategoriaIgnoreCaseContaining(categoria);
     }
 
     public Livro atualizar(Long id, Livro livro){
@@ -50,6 +64,7 @@ public class LivroService {
     }
 
     public void exclui(Long id){
+        buscarPorId(id);
         livroRepository.deleteById(id);
     }
 
