@@ -26,6 +26,11 @@ public class LivroController {
         return livroService.buscarPorId(id);
     }
 
+    @GetMapping("/disponibilidade")
+    public List<Livro> buscaPorDisponibilidade(){
+        return livroService.buscaPorDisponibilidade();
+    }
+
     @GetMapping("/titulo")
     public List<Livro> buscaPorTitulo(@Valid @RequestParam String titulo){
         return livroService.buscaPorTitulo(titulo);

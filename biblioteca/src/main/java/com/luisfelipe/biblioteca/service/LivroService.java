@@ -29,6 +29,14 @@ public class LivroService {
         return livro;
     }
 
+    public List<Livro> buscaPorDisponibilidade(){
+        List<Livro> livros = livroRepository.findAllByDisponivelEqualsTrue();
+        if (livros.isEmpty()){
+            throw new LivroNaoEncontradoException("Não existem livros na biblioteca ou não existe livros que estejam dísponiveis");
+        }
+        return livros;
+    }
+
     public List<Livro> buscaPorTitulo(String titulo){
         if(livroRepository.findAllByTituloIgnoreCaseContaining(titulo).isEmpty()){
             throw new LivroNaoEncontradoException("Seu livro com o titulo: "+ titulo +" não foi encontrado");
